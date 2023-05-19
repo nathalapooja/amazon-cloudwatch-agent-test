@@ -1,9 +1,10 @@
 //go:build windows
 
-package cloudwatchlogs
+package windows
 
 import (
 	"fmt"
+	"github.com/aws/amazon-cloudwatch-agent-test/test/cloudwatchlogs"
 	"log"
 	"strings"
 	"testing"
@@ -15,6 +16,7 @@ import (
 )
 
 func TestWindowsEventLog(t *testing.T) {
+	log.Printf("Testing Windows Plugin")
 	cfgFilePath := "resources/config_windows_event_log.json"
 
 	instanceId := awsservice.GetInstanceId()
@@ -23,15 +25,15 @@ func TestWindowsEventLog(t *testing.T) {
 	logStream := instanceId
 
 	start := time.Now()
-	common.CopyFile(cfgFilePath, configOutputPath)
+	common.CopyFile(cfgFilePath, cloudwatchlogs.configOutputPath)
 
-	common.StartAgent(configOutputPath, true)
+	common.StartAgent(cloudwatchlogs.configOutputPath, true)
 
 	// ensure that there is enough time from the "start" time and the first log line,
 	// so we don't miss it in the GetLogEvents call
-	time.Sleep(agentRuntime)
+	time.Sleep(cloudwatchlogs.agentRuntime)
 	t.Log("Writing logs from windows event log plugin")
-	time.Sleep(agentRuntime)
+	time.Sleep(cloudwatchlogs.agentRuntime)
 	common.StopAgent()
 
 	lines := []string{

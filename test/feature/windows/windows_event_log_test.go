@@ -8,14 +8,16 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aws/amazon-cloudwatch-agent-test/environment"
+
 	"github.com/aws/amazon-cloudwatch-agent-test/internal/awsservice"
 	"github.com/aws/amazon-cloudwatch-agent-test/internal/common"
 	"github.com/stretchr/testify/assert"
 )
 
 const (
-	configOutputPath = "/opt/aws/amazon-cloudwatch-agent/bin/config.json"
-	agentRuntime     = 20 * time.Second // default flush interval is 5 seconds
+	configOutputPath    = "C:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\amazon-cloudwatch-agent.json"
+	agentWindowsRuntime = 3 * time.Minute
 )
 
 // Event is the event entry representation
@@ -83,6 +85,12 @@ type TimeCreated struct {
 	SystemTime string `xml:"SystemTime,attr"`
 }
 
+var envMetaDataStrings = &(environment.MetaDataStrings{})
+
+func init() {
+	environment.RegisterEnvironmentMetaDataFlags(envMetaDataStrings)
+}
+
 func TestWindowsEventLog(t *testing.T) {
 	log.Printf("Testing Windows Plugin")
 	cfgFilePath := "resources/config_windows_event_log.json"
@@ -99,9 +107,8 @@ func TestWindowsEventLog(t *testing.T) {
 
 	// ensure that there is enough time from the "start" time and the first log line,
 	// so we don't miss it in the GetLogEvents call
-	time.Sleep(agentRuntime)
+	time.Sleep(agentWindowsRuntime)
 	t.Log("Writing logs from windows event log plugin")
-	time.Sleep(agentRuntime)
 	common.StopAgent()
 
 	end := time.Now()

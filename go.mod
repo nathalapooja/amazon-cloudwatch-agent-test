@@ -7,11 +7,6 @@ replace github.com/influxdata/telegraf => github.com/aws/telegraf v0.10.2-0.2022
 // Avoid checksum mismatch for go-collectd https://github.com/collectd/go-collectd/issues/94
 replace collectd.org v0.5.0 => github.com/collectd/go-collectd v0.5.0
 
-// Telegraf uses the older v1.8.2: https://github.com/influxdata/telegraf/blob/0e1b637414bdc7b438a8e77d859f787525b3782d/go.mod#L146
-// But we want a later version, so do a replace
-// v0.42.0 looks lower, but Prometheus messed up their library naming convention, it actually matches 2.42.0 prometheus version
-replace github.com/prometheus/prometheus v1.8.2-0.20210430082741-2a4b8e12bbf23 => github.com/prometheus/prometheus v0.42.0
-
 require (
 	collectd.org v0.5.0
 	github.com/DataDog/datadog-go v4.8.3+incompatible
@@ -64,9 +59,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
-	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/qri-io/jsonpointer v0.1.1 // indirect
@@ -77,5 +70,4 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/mod v0.6.0 // indirect
 	golang.org/x/tools v0.2.0 // indirect
-	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 )

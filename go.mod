@@ -2,8 +2,15 @@ module github.com/aws/amazon-cloudwatch-agent-test
 
 go 1.18
 
+replace github.com/influxdata/telegraf => github.com/aws/telegraf v0.10.2-0.20220502160831-c20ebe67c5ef
+
 // Avoid checksum mismatch for go-collectd https://github.com/collectd/go-collectd/issues/94
 replace collectd.org v0.5.0 => github.com/collectd/go-collectd v0.5.0
+
+// Telegraf uses the older v1.8.2: https://github.com/influxdata/telegraf/blob/0e1b637414bdc7b438a8e77d859f787525b3782d/go.mod#L146
+// But we want a later version, so do a replace
+// v0.42.0 looks lower, but Prometheus messed up their library naming convention, it actually matches 2.42.0 prometheus version
+replace github.com/prometheus/prometheus v1.8.2-0.20210430082741-2a4b8e12bbf23 => github.com/prometheus/prometheus v0.42.0
 
 require (
 	collectd.org v0.5.0
@@ -24,6 +31,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.33.0
 	github.com/cenkalti/backoff/v4 v4.2.0
 	github.com/google/uuid v1.3.0
+	github.com/influxdata/telegraf v0.0.0-00010101000000-000000000000
+	github.com/influxdata/wlog v0.0.0-20160411224016-7c63b0a71ef8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/prozz/aws-embedded-metrics-golang v1.2.0
 	github.com/qri-io/jsonschema v0.2.1
@@ -55,6 +64,8 @@ require (
 	github.com/aws/smithy-go v1.13.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
+	github.com/influxdata/line-protocol/v2 v2.2.1 // indirect
+    github.com/influxdata/toml v0.0.0-20190415235208-270119a8ce65 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

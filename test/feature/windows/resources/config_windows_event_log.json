@@ -1,11 +1,16 @@
 {
+  "agent": {
+    "region": "us-west-2",
+    "run_as_user": "root",
+    "debug": true
+  },
   "logs": {
     "logs_collected": {
       "files": {
         "collect_list": [
           {
             "file_path": "C:\\Users\\Administrator\\Desktop\\CWMetricsLogs",
-            "log_group_name": "CWMetricsLogs",
+            "log_group_name": "{instance_id}",
             "log_stream_name": "{instance_id}",
             "retention_in_days": -1
           }
@@ -23,7 +28,7 @@
               "CRITICAL"
             ],
             "event_name": "System",
-            "log_group_name": "CloudWatchAgent",
+            "log_group_name": "{instance_id}",
             "log_stream_name": "{instance_id}",
             "retention_in_days": -1
           }

@@ -32,7 +32,6 @@ require (
 	github.com/cenkalti/backoff/v4 v4.2.0
 	github.com/google/uuid v1.3.0
 	github.com/influxdata/telegraf v0.0.0-00010101000000-000000000000
-	github.com/influxdata/wlog v0.0.0-20160411224016-7c63b0a71ef8
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/prozz/aws-embedded-metrics-golang v1.2.0
 	github.com/qri-io/jsonschema v0.2.1
@@ -64,10 +63,10 @@ require (
 	github.com/aws/smithy-go v1.13.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
-	github.com/influxdata/line-protocol/v2 v2.2.1 // indirect
-    github.com/influxdata/toml v0.0.0-20190415235208-270119a8ce65 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/qri-io/jsonpointer v0.1.1 // indirect
@@ -75,7 +74,8 @@ require (
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
-	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/mod v0.6.0 // indirect
 	golang.org/x/tools v0.2.0 // indirect
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 )

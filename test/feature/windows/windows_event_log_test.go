@@ -32,8 +32,6 @@ func TestWindowsEventLog(t *testing.T) {
 
 	instanceId := awsservice.GetInstanceId()
 	log.Printf("Found instance id %s", instanceId)
-	logGroup := "CloudWatchAgent"
-	logStream := instanceId
 
 	start := time.Now()
 	common.CopyFile(cfgFilePath, configOutputPath)
@@ -48,7 +46,7 @@ func TestWindowsEventLog(t *testing.T) {
 
 	end := time.Now()
 
-	ok, err := awsservice.ValidateLogs(logGroup, logStream, &start, &end, func(logs []string) bool {
+	ok, err := awsservice.ValidateLogs(instanceId, instanceId, &start, &end, func(logs []string) bool {
 		log.Printf("logs length: %d ", len(logs))
 
 		for i := 0; i < len(logs); i++ {

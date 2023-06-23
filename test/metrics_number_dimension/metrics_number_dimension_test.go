@@ -99,6 +99,11 @@ func TestNumberMetricDimension(t *testing.T) {
 			// test for cloud watch metrics
 			dimensionFilter := buildDimensionFilterList(parameter.numberDimensionsInCW)
 			awsservice.ValidateMetricWithTest(t, parameter.metricName, namespace, dimensionFilter)
+			agentLog, err := common.RunCommand(common.CatCommand + common.AgentLogFile)
+			if err != nil {
+				return
+			}
+			t.Logf("Agent logs %s", agentLog)
 		})
 	}
 }

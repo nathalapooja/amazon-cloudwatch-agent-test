@@ -3,7 +3,8 @@
     "metrics_collection_interval": 60,
     "run_as_user": "root",
     "debug": true,
-    "logfile": ""
+    "logfile": "",
+    "aws_sdk_log_level": "LogDebugWithHTTPBody"
   },
   "metrics": {
     "namespace": "MetricNumberDimensionTest",

@@ -38,7 +38,7 @@ func ValidateMetric(metricName, namespace string, dimensionsFilter []types.Dimen
 	var data *cloudwatch.ListMetricsOutput
 	for i := 0; i < 10; i++ {
 		log.Printf("List CWClient metrics trying for %d time", i+1)
-		data, err := CwmClient.ListMetrics(ctx, &listMetricsInput)
+		data, err = CwmClient.ListMetrics(ctx, &listMetricsInput)
 		if err == nil && len(data.Metrics) > 0 {
 			break
 		}

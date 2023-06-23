@@ -39,7 +39,7 @@ func ValidateMetric(metricName, namespace string, dimensionsFilter []types.Dimen
 		return errors.New(fmt.Sprintf("Error getting metric data %v", err))
 	}
 
-	log.Printf("data : %v", *data)
+	log.Printf("data : %v", &data)
 
 	// Only validate if certain metrics are published by CloudWatchAgent in corresponding namespace
 	// Since the metric value can be unpredictive.

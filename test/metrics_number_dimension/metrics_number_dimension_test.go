@@ -98,7 +98,6 @@ func TestNumberMetricDimension(t *testing.T) {
 
 			// test for cloud watch metrics
 			dimensionFilter := buildDimensionFilterList(parameter.numberDimensionsInCW)
-			log.Printf("dimensionFilter: %v", *dimensionFilter)
 			awsservice.ValidateMetricWithTest(t, parameter.metricName, namespace, dimensionFilter)
 		})
 	}

@@ -4,7 +4,7 @@
     "run_as_user": "root",
     "debug": true,
     "logfile": "",
-    "aws_sdk_log_level": "LogDebugWithHTTPBody"
+    "aws_sdk_log_level": "LogDebugWithHTTPBody | LogDebugWithRequestRetries"
   },
   "metrics": {
     "namespace": "MetricNumberDimensionTest",

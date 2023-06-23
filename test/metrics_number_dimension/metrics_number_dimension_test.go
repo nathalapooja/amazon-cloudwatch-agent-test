@@ -103,7 +103,7 @@ func TestNumberMetricDimension(t *testing.T) {
 			if err != nil {
 				return
 			}
-			t.Logf("Agent logs %s", agentLog)
+			t.Logf("Agent logs new %s", agentLog)
 		})
 	}
 }

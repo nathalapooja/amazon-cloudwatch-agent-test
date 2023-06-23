@@ -34,30 +34,33 @@ func ValidateMetric(metricName, namespace string, dimensionsFilter []types.Dimen
 		RecentlyActive: "PT3H",
 		Dimensions:     dimensionsFilter,
 	}
+	var err error
+	var data *cloudwatch.ListMetricsOutput
 	for i := 0; i < 10; i++ {
 		log.Printf("List CWClient metrics trying for %d time", i+1)
 		data, err := CwmClient.ListMetrics(ctx, &listMetricsInput)
 		if err == nil && len(data.Metrics) > 0 {
 			break
 		}
-		if err != nil {
-			return errors.New(fmt.Sprintf("Error getting metric data after 10 mins %v", err))
-		}
-		// Only validate if certain metrics are published by CloudWatchAgent in corresponding namespace
-		// Since the metric value can be unpredictive.
-		if len(data.Metrics) == 0 {
-			dims := make([]metric, len(dimensionsFilter))
-			for i, filter := range dimensionsFilter {
-				dims[i] = metric{
-					name:  *filter.Name,
-					value: *filter.Value,
-				}
-			}
-			return errors.New(fmt.Sprintf("No metrics found for dimension %v metric name %v namespace %v in %d try",
-				dims, metricName, namespace, i+1))
-		}
 
 		time.Sleep(1 * time.Minute)
+	}
+
+	if err != nil {
+		return errors.New(fmt.Sprintf("Error getting metric data after 10 mins %v", err))
+	}
+	// Only validate if certain metrics are published by CloudWatchAgent in corresponding namespace
+	// Since the metric value can be unpredictive.
+	if len(data.Metrics) == 0 {
+		dims := make([]metric, len(dimensionsFilter))
+		for i, filter := range dimensionsFilter {
+			dims[i] = metric{
+				name:  *filter.Name,
+				value: *filter.Value,
+			}
+		}
+		return errors.New(fmt.Sprintf("No metrics found for dimension %v metric name %v namespace %v",
+			dims, metricName, namespace))
 	}
 
 	log.Printf("Found metrics")
